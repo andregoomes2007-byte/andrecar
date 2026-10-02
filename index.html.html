@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Galeria Aurelia — Carros de luxo</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:opsz,wght@6..96,500;6..96,700&family=Instrument+Sans:wght@400;500;600&display=swap">
+<style>
+:root{--bg:#ebe7e0;--surface:#f6f3ee;--ink:#161a1d;--muted:#5d625f;--line:#cfc9bf;--accent:#7a1a2b;--on-accent:#fff;
+box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#0e1b2a;--surface:#15263a;--ink:#f1ede4;--muted:#a3adb8;--line:#2b3d52;--accent:#d2b074;--on-accent:#1a1409}}
+:root[data-theme="dark"]{--bg:#0e1b2a;--surface:#15263a;--ink:#f1ede4;--muted:#a3adb8;--line:#2b3d52;--accent:#d2b074;--on-accent:#1a1409}
+*,*::before,*::after{box-sizing:border-box}
+html{scroll-padding-top:env(safe-area-inset-top,0px)}
+body{margin:0;background:var(--bg);color:var(--ink);font:400 1rem/1.6 "Instrument Sans",system-ui,sans-serif}
+h1,h2,h3{font-family:"Bodoni Moda",Georgia,serif;font-weight:500;line-height:1.1;margin:0}
+a{color:inherit}
+:focus-visible{outline:2px solid var(--accent);outline-offset:3px}
+.wrap{max-width:1120px;margin:0 auto;padding:0 1.25rem}
+header{display:flex;justify-content:space-between;align-items:center;padding:1.25rem 0}
+.logo{font-family:"Bodoni Moda",Georgia,serif;font-size:1.3rem;font-weight:700;text-decoration:none}
+nav a{margin-left:1.5rem;text-decoration:none;color:var(--muted);font-size:.95rem}
+nav a:hover{color:var(--ink)}
+.hero{padding:3rem 0 2.5rem}
+.hero h1{font-size:clamp(2.6rem,8vw,6rem);max-width:12ch;letter-spacing:-.02em}
+.hero p{max-width:46ch;color:var(--muted);font-size:1.1rem;margin:1.5rem 0 2rem}
+.btn{display:inline-block;background:var(--accent);color:var(--on-accent);border:0;padding:.85rem 1.6rem;font:600 1rem "Instrument Sans",sans-serif;border-radius:2px;cursor:pointer;text-decoration:none}
+.btn:hover{filter:brightness(1.1)}
+.stage{margin-top:2.5rem;border-top:1px solid var(--line);padding-top:1rem}
+.stage svg{width:100%;height:auto;display:block}
+section{padding:3.5rem 0}
+.head{display:flex;flex-wrap:wrap;justify-content:space-between;align-items:end;gap:1rem;margin-bottom:2rem}
+.head h2{font-size:clamp(1.9rem,4vw,2.8rem)}
+.filters{display:flex;flex-wrap:wrap;gap:.5rem}
+.filters button{background:none;color:var(--ink);border:1px solid var(--line);padding:.45rem 1rem;border-radius:999px;font:500 .92rem "Instrument Sans",sans-serif;cursor:pointer}
+.filters button[aria-pressed="true"]{background:var(--ink);color:var(--bg);border-color:var(--ink)}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:1.5rem}
+.card{background:var(--surface);border:0;padding:0;text-align:left;cursor:pointer;color:inherit;font:inherit;display:block;width:100%}
+.card .pic{position:relative;overflow:hidden;aspect-ratio:16/10;display:flex;align-items:flex-end;padding:1.5rem 1rem 0;border-bottom:1px solid var(--line)}
+.card .pic img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.over{position:absolute;inset:0;display:grid;grid-template-columns:repeat(3,1fr);align-content:center;gap:.5rem;padding:1rem;text-align:center;background:color-mix(in srgb,var(--bg) 88%,transparent);backdrop-filter:blur(3px);opacity:0;transition:opacity .25s}
+.over b{display:block;font:500 1.35rem "Bodoni Moda",Georgia,serif}
+.over span{font-size:.82rem;color:var(--muted)}
+.card:hover .over,.card:focus-visible .over{opacity:1}
+.card .info{padding:1.1rem 1.25rem 1.4rem}
+.card h3{font-size:1.5rem}
+.card .meta{color:var(--muted);font-size:.92rem;margin:.25rem 0 .9rem}
+.card .price{font-weight:600}
+.card:hover h3{color:var(--accent)}
+.car-body{fill:var(--c,#444)}
+.car-glass{fill:rgba(255,255,255,.35)}
+.car-wheel{fill:#15181a}.car-rim{fill:#bfc3c6}
+.about{display:grid;gap:2rem;grid-template-columns:repeat(auto-fit,minmax(240px,1fr))}
+.about h3{font-size:1.3rem;margin-bottom:.5rem}
+.about p{margin:0;color:var(--muted)}
+footer{border-top:1px solid var(--line);padding:2rem 0;color:var(--muted);font-size:.92rem}
+dialog{border:0;padding:0;max-width:640px;width:calc(100% - 2rem);background:var(--surface);color:var(--ink)}
+dialog::backdrop{background:rgba(5,10,18,.65)}
+.dlg{padding:1.5rem}
+.dlg h2{font-size:2rem}
+.specs{display:grid;grid-template-columns:repeat(3,1fr);gap:1rem;margin:1.5rem 0;border-top:1px solid var(--line);border-bottom:1px solid var(--line);padding:1rem 0}
+.specs b{display:block;font:500 1.5rem "Bodoni Moda",Georgia,serif}
+.specs span{color:var(--muted);font-size:.88rem}
+.row{display:flex;gap:.75rem;flex-wrap:wrap;align-items:center}
+.ghost{background:none;color:var(--ink);border:1px solid var(--line)}
+.ok{color:var(--accent);font-weight:600}
+</style>
+</head>
+<body>
+<div class="wrap">
+<header>
+  <a class="logo" href="#">Galeria Aurelia</a>
+  <nav><a href="#colecao">Coleção</a><a href="#casa">A galeria</a></nav>
+</header>
+
+<div class="hero">
+  <h1>Obras de arte que andam.</h1>
+  <p>Uma coleção reservada de carros de luxo, escolhidos um a um. Veja os detalhes e agende uma visita privada.</p>
+  <a class="btn" href="#colecao">Ver a coleção</a>
+  <div class="stage" aria-hidden="true">
+    <svg viewBox="0 0 300 100" style="--c:var(--accent)"><use href="#car"/></svg>
+  </div>
+</div>
+
+<section id="colecao">
+  <div class="head">
+    <h2>Coleção atual</h2>
+    <div class="filters" id="filters" role="group" aria-label="Filtrar por categoria"></div>
+  </div>
+  <div class="grid" id="grid"></div>
+</section>
+
+<section id="casa">
+  <div class="head"><h2>Como funciona a visita</h2></div>
+  <div class="about">
+    <div><h3>Atendimento privado</h3><p>Cada visita é individual, com horário reservado e um especialista para responder suas dúvidas.</p></div>
+    <div><h3>Procedência verificada</h3><p>Todos os carros têm histórico completo, revisões em dia e laudo cautelar disponível.</p></div>
+    <div><h3>Test drive</h3><p>Dirija o carro que você escolher, em percurso combinado com antecedência.</p></div>
+  </div>
+</section>
+
+<footer>© 2026 Galeria Aurelia. Os modelos e valores exibidos são fictícios, para demonstração.</footer>
+</div>
+
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <symbol id="car" viewBox="0 0 300 100">
+    <path class="car-body" d="M8 74C8 64 28 58 58 53L98 33C128 22 176 22 206 33L246 50C276 54 292 60 292 72V78H8Z"/>
+    <path class="car-glass" d="M104 38C130 29 172 29 198 38L226 49H84Z"/>
+    <circle class="car-wheel" cx="70" cy="78" r="17"/><circle class="car-rim" cx="70" cy="78" r="8"/>
+    <circle class="car-wheel" cx="232" cy="78" r="17"/><circle class="car-rim" cx="232" cy="78" r="8"/>
+  </symbol>
+</svg>
+
+<dialog id="dlg" aria-labelledby="dtitle"><div class="dlg" id="dbody"></div></dialog>
+
+<script>
+const cars=[
+{n:"Porsche 911 GT3 RS",y:"",cat:"Esportivo",hp:525,s:"3,2 s",v:296,p:null,c:"#7a1a2b",img:"data:image/jpeg;base64,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",d:"Esportivo de pista aprovado para as ruas, com motor 4.0 aspirado de seis cilindros, asa traseira ativa e rodas de centro fixo."},
+{n:"Solène Coupé",y:2024,cat:"Grã-turismo",hp:520,s:"3,9 s",v:300,p:1240000,c:"#2f4a63",d:"Feito para longas viagens: suspensão adaptativa, interior silencioso e porta-malas amplo."},
+{n:"Atrium Sedan",y:2025,cat:"Sedã",hp:430,s:"4,6 s",v:280,p:980000,c:"#3b3f40",d:"Sedã executivo com bancos traseiros reclináveis, teto panorâmico e som de 22 alto-falantes."},
+{n:"Kestrel RS",y:2023,cat:"Esportivo",hp:710,s:"2,9 s",v:335,p:2350000,c:"#b88a2d",d:"Versão de pista aprovada para as ruas, com aerodinâmica ativa e freios de carbono-cerâmica."},
+{n:"Montrose SUV",y:2025,cat:"SUV",hp:560,s:"4,1 s",v:290,p:1480000,c:"#27453a",d:"SUV de sete lugares com tração integral, suspensão a ar e cabine revestida em madeira."},
+{n:"Lumen EV",y:2026,cat:"Elétrico",hp:820,s:"2,7 s",v:260,p:1720000,c:"#8a8f94",d:"Elétrico com autonomia de 560 km, carregamento rápido e painel digital de ponta a ponta."}
+];
+const price=c=>c.p?brl(c.p):"Sob consulta";
+const brl=n=>n.toLocaleString("pt-BR",{style:"currency",currency:"BRL",maximumFractionDigits:0});
+const cats=["Todos",...new Set(cars.map(c=>c.cat))];
+const f=document.getElementById("filters"),g=document.getElementById("grid"),dlg=document.getElementById("dlg"),db=document.getElementById("dbody");
+let cur="Todos";
+const svg=c=>`<svg viewBox="0 0 300 100" style="--c:${c}" aria-hidden="true"><use href="#car"/></svg>`;
+function render(){
+  f.innerHTML=cats.map(k=>`<button aria-pressed="${k===cur}" data-k="${k}">${k}</button>`).join("");
+  g.innerHTML=cars.map((c,i)=>({c,i})).filter(o=>cur==="Todos"||o.c.cat===cur).map(({c,i})=>`
+  <button class="card" data-i="${i}" aria-label="Ver detalhes: ${c.n}">
+    <div class="pic">${c.img?`<img src="${c.img}" alt="${c.n}">`:svg(c.c)}<div class="over"><div><b>${c.hp} cv</b><span>Potência</span></div><div><b>${c.s}</b><span>0 a 100 km/h</span></div><div><b>${c.v} km/h</b><span>Máxima</span></div></div></div>
+    <div class="info"><h3>${c.n}</h3><div class="meta">${c.cat}${c.y?", "+c.y:""}</div><div class="price">${price(c)}</div></div>
+  </button>`).join("");
+}
+f.addEventListener("click",e=>{const k=e.target.dataset.k;if(k){cur=k;render()}});
+g.addEventListener("click",e=>{const b=e.target.closest(".card");if(b)open(+b.dataset.i)});
+function open(i){
+  const c=cars[i];
+  db.innerHTML=`${svg(c.c)}
+  <h2 id="dtitle">${c.n}</h2>
+  <p style="color:var(--muted);margin:.4rem 0 0">${c.cat}${c.y?", "+c.y:""}</p>
+  <p>${c.d}</p>
+  <div class="specs"><div><b>${c.hp} cv</b><span>Potência</span></div><div><b>${c.s}</b><span>0 a 100 km/h</span></div><div><b>${c.v} km/h</b><span>Velocidade máxima</span></div></div>
+  <div class="row"><strong style="font-size:1.2rem;margin-right:auto">${price(c)}</strong>
+  <button class="btn" id="book">Agendar visita</button><button class="btn ghost" id="close">Fechar</button></div>
+  <p class="ok" id="msg" role="status" style="margin:1rem 0 0"></p>`;
+  dlg.showModal();
+  document.getElementById("close").onclick=()=>dlg.close();
+  document.getElementById("book").onclick=()=>{document.getElementById("msg").textContent="Pedido de visita registrado. Nossa equipe entrará em contato para confirmar o horário.";};
+}
+dlg.addEventListener("click",e=>{if(e.target===dlg)dlg.close()});
+render();
+</script>
+</body>
+</html>
